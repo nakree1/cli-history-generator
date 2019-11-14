@@ -1,0 +1,17 @@
+{
+  "name": "history_generator",
+  "version": "1.0.0",
+  "description": "Generate user history commands for cTRU project",
+  "main": "index.js",
+  "scripts": {
+    "start": "./index.js",
+    "build": "pkg ./index.js --target host --output ./build/history-generator-app"
+  },
+  "author": "Max Melnychyk",
+  "license": "ISC",
+  "bin": "./index.js",
+  "dependencies": {
+    "date-fns": "^2.7.0",
+    "yargs": "^14.2.0"
+  }
+}
