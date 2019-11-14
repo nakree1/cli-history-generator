@@ -15,23 +15,24 @@ function normalizeRate(options = []) {
 module.exports = function generateFile(options) {
   const t0 = performance.now();
 
+  console.log('-> Start generating data...');
   const now = new Date();
   const start = parseDate(options.start);
   const points = generateDays({ start, end: now});
+  const { target, importance, satisfaction } = options;
+  const importanceRate = normalizeRate(importance);
+  const satisfactionRate = normalizeRate(satisfaction);
 
-  console.log('-> Start generating data...');
-  const importanceRate = normalizeRate(options.importance);
-  const satisfactionRate = normalizeRate(options.satisfaction);
-
+  console.log(`-> Created ${points.length} point${points.length > 1 ? 's' : ''}...`);
   const data = points.map(date => generateLine({
-    date: parseDate(date),
-    target: options.target,
+    date,
+    now,
+    target,
     importanceRate,
     satisfactionRate,
-    now,
   })).join('\n');
 
-  const fileName = options.f || `${options.t}_${options.s}.txt`;
+  const fileName = options.f || `${options.start}_id_${target}.txt`;
 
   console.log(`-> Writing a file ${fileName}...`);
   fs.writeFileSync(fileName, data);

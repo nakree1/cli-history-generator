@@ -11,9 +11,7 @@ function parseDate(str) {
 }
 
 function generateDays({ start, end }) {
-  const interval = eachDayOfInterval({ start, end });
-
-  return interval.map(date => formatDate(date));
+  return eachDayOfInterval({ start, end });
 }
 
 module.exports = {
