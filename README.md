@@ -1,4 +1,4 @@
-# history-generator
+# cli-history-generator
 SQL command generator for creating user history. Built with Node.js
 
 ### Build command
